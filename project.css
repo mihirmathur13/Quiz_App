@@ -1,3 +1,109 @@
+body {
+  background: #f3f4f6; /* Light gray */
+  background-image: url("spaceguy.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.container {
+  background: #5865f2; /* Light blue */
+  opacity: 0.9;
+}
+
+.heading {
+  color: #ff7aa2; /* Pink */
+}
+
+label {
+  color: #576081; /* Dark gray */
+}
+
+select {
+  background: #ffffff; /* White */
+  color: #5865f2; /* Light blue */
+}
+
+.timer .progress .progress-bar {
+  background: linear-gradient(to right, #ff7aa2, #b478f1); /* Pink to purple */
+}
+
+.question-wrapper .number {
+  color: #4caf50; /* Green */
+}
+
+.question-wrapper .question {
+  color: #333333; /* Black */
+}
+
+.answer-wrapper .answer {
+  background: #ff7aa2; /* Pink */
+  border-color: #ff7aa2; /* Pink */
+}
+
+.answer.selected .checkbox,
+.answer:hover:not(.checked) .checkbox {
+  background-color: #b478f1; /* Purple */
+  border-color: #b478f1; /* Purple */
+}
+
+.answer.correct {
+  border-color: #4caf50; /* Green */
+}
+
+.answer.wrong {
+  border-color: #ff3333; /* Red */
+}
+
+.btn {
+  background: #4caf50; /* Green */
+}
+
+.btn:hover {
+  background: #2e7d32; /* Dark green */
+}
+
+.btn:disabled {
+  background: #b0bec5; /* Gray */
+}
+
+/* Cool features: */
+/* Add a subtle animation on hovering the answers */
+.answer-wrapper .answer:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Add a glow effect on correct answers */
+.answer.correct:hover {
+  box-shadow: 0 0 10px #4caf50, 0 0 20px #4caf50, 0 0 30px #4caf50;
+}
+
+/* Add a shake effect on wrong answers */
+.answer.wrong:hover {
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-5px);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(-5px);
+  }
+  80% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 @import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
 
 * {
@@ -13,11 +119,10 @@ body {
   justify-content: center;
   background: #dddfeb;
   background-image: url("spaceguy.png");
-  background-size:auto;
+  background-size: auto;
   background-repeat: no-repeat;
-
 }
- .container {
+.container {
   position: relative;
   width: 100%;
   max-width: 400px;
@@ -27,7 +132,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   opacity: 0.8;
-} 
+}
 
 .heading {
   text-align: center;
@@ -151,7 +256,7 @@ select {
   opacity: 1;
 }
 .answer.correct {
-    border-color: #0cef2a;
+  border-color: #0cef2a;
 }
 .answer.wrong {
   border-color: #fc3939;
@@ -203,4 +308,20 @@ select {
     max-width: 100%;
     border-radius: 0;
   }
+}
+.back-btn {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 20px; /* Adjust margin as needed */
+  text-align: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #555;
 }

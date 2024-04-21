@@ -130,8 +130,6 @@ function defineProperty() {
   document.body.appendChild(osccred);
 }
 
-defineProperty();
-
 const submitBtn = document.querySelector(".submit"),
   nextBtn = document.querySelector(".next");
 submitBtn.addEventListener("click", () => {

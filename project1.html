@@ -14,69 +14,75 @@
     <link rel="stylesheet" href="project.css" />
     <style>
       /* Add your additional CSS styles here */
+
       .navbar {
-          position: fixed;
-          top: 0px;
-          left: 0;
-          width: 100%;
-          margin: 0px;
-          /* background-color: #333; */
-          color: #fff;
-          padding: 0px 5px;
-          z-index: 999; /* Ensures it's above other content */
-          display: flex;
-          justify-content:space-between;
-          align-items:center;
-          opacity: 0.8;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #00000000; /* Set the background color of the navbar */
+        color: #fff;
+        padding: 1px 1px; /* Adjust padding as needed */
+        z-index: 999;
+        display: flex;
+        justify-content: center; /* Center the navbar horizontally */
+      }
+
+      .navbar .logo {
+        font-size: 20px; /* Adjust the font size of the logo */
       }
 
       .nav-links {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-          display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center; /* Center the navbar links horizontally */
       }
 
       .nav-links li {
-          margin-right: 20px;
+        margin-right: 20px; /* Adjust the margin between navbar links */
+      }
+
+      .nav-links li:last-child {
+        margin-right: 0; /* Remove margin from the last navbar link */
       }
 
       .nav-links li a {
-          color: #fff;
-          text-decoration: none;
+        color: #fff;
+        text-decoration: none;
+      }
+      .container {
+        margin-top: 100px; /* Adjust the margin-top value to create space below the navbar */
+        padding-top: 300px; /* Add additional padding to push the content down */
       }
 
       .nav-links li a:hover {
-          text-decoration: underline;
-      }
-
-      .con {
-          max-width: 800px;
-          margin: 80px auto 20px; /* Adjust top margin to make space for the fixed navbar */
-          padding: 20px;
+        text-decoration: underline;
       }
 
       .logo {
-          font-size: 24px;
-          font-weight: bold;
-          display: flex;
-          justify-content:space-around;
+        font-size: 24px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-around;
       }
-  </style>
+    </style>
     <title>Quiz App</title>
   </head>
   <body>
     <nav class="navbar">
       <div class="con">
-          <div class="logo">Quiz App</div>
-          <ul class="nav-links">
-              <li><a href="#">Home</a></li>
-              <li><a href="aboutus.html">About Us</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="loginog.html">Login</a></li>
-          </ul>
+        <div class="logo">Quiz App</div>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="loginog.html">Login</a></li>
+          <li><a href="Admin.html">Admin</a></li>
+        </ul>
       </div>
-  </nav>
+    </nav>
 
     <div class="container">
       <div class="start-screen">
@@ -86,11 +92,6 @@
           <select id="num-questions">
             <option value="5">5</option>
             <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="20">30</option>
-            <option value="20">40</option>
-            <option value="20">50</option>
           </select>
           <label for="category">Select Category:</label>
           <select id="category">
@@ -124,10 +125,6 @@
           <select id="time">
             <option value="10">10 seconds</option>
             <option value="15">15 seconds</option>
-            <option value="20">20 seconds</option>
-            <option value="25">25 seconds</option>
-            <option value="30">30 seconds</option>
-            <option value="60">60 seconds</option>
           </select>
         </div>
         <button class="btn start">Start Quiz</button>
@@ -172,4 +169,4 @@
 
     <script src="project.js"></script>
   </body>
-</html> 
+</html>
