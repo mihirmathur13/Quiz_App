@@ -15,6 +15,13 @@ const startBtn = document.querySelector(".start"),
   quiz = document.querySelector(".quiz"),
   startScreen = document.querySelector(".start-screen");
 
+  window.onload = function() {
+    if(success){
+      startQuiz();
+    }
+};
+
+
 let questions = [],
   time = 30,
   score = 0,
@@ -40,7 +47,7 @@ const startQuiz = () => {
     });
 };
 
-startBtn.addEventListener("click", startQuiz);
+
 
 const showQuestion = (question) => {
   const questionText = document.querySelector(".question"),

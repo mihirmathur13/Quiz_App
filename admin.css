@@ -1,0 +1,65 @@
+/* body {
+  background: #f3f4f6 url("spaceguy.png") no-repeat center;
+  background-size: cover; /* Ensure the background covers the entire screen */ 
+*/
+body {
+  min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: #dddfeb; */
+    background-image: url("spaceguy.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+}
+
+
+.containers {
+  background: #1f2847;
+  opacity: 0.9;
+  width: 300px; /* Adjust width as needed */
+  margin: 0 auto; /* Center the container */
+  padding: 20px; /* Add padding for spacing */
+  border-radius: 10px;
+}
+
+
+/* Center the login button */
+.btn {
+  width: 100%;
+  margin-top: 20px; /* Adjust as needed */
+}
+
+/* Adjust the styles for labels */
+label {
+  display: block;
+  margin-bottom: 5px; /* Reduce the margin for tighter spacing */
+}
+
+/* Hide the back button */
+.back-btn {
+  display: none;
+}
+
+.btn {
+  width: 100%;
+  height: 60px;
+  background: #0c80ef;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s linear;
+}
+.btn:hover {
+  background: #0a6bc5;
+}
+.btn:disabled {
+  background: #576081;
+  cursor: not-allowed;
+}
+.btn.next {
+  display: none;
+}

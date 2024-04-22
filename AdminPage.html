@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Page</title>
+  <link rel="stylesheet" href="page.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Create Quiz</h1>
+    <form id="createQuizForm">
+      <label for="quizName">Quiz Name:</label>
+      <input type="text" id="quizName" name="quizName" required>
+      <button type="submit">Create</button>
+    </form>
+
+    <div id="quizQuestions" style="display: none;">
+      <h2>Quiz Questions</h2>
+      <div id="questionsContainer">
+        <!-- Questions will be added here dynamically -->
+      </div>
+      <button id="addQuestionBtn">Add Question</button>
+    </div>
+  </div>
+
+  <script src="page.js"></script>
+</body>
+</html>
