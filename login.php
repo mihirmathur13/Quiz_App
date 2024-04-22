@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['success'] = false;
 
             echo '<script>alert("Login successful")</script>';
-            echo '<script>window.location.href = "project1.php";</script>';
+            echo '<script>window.location.href = "project1.html";</script>';
             exit(); // Stop further execution
         } else {
             // Invalid password
