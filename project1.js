@@ -15,6 +15,11 @@ const startBtn = document.querySelector(".start"),
   quiz = document.querySelector(".quiz"),
   startScreen = document.querySelector(".start-screen");
 
+
+
+
+
+  
 let questions = [],
   time = 30,
   score = 0,

@@ -31,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Password is correct, start a session
             session_start();
             $_SESSION['username'] = $row['username'];
-            $_SESSION['success'] = false;
 
             echo '<script>alert("Login successful")</script>';
             echo '<script>window.location.href = "project1.html";</script>';
