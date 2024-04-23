@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +44,36 @@ session_start();
       cursor: pointer;
     }
 
-    /* Add your additional CSS styles here */
+    /* CSS styles for questions and options */
+    .question {
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .option {
+      font-size: 16px;
+      padding: 10px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .option:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* CSS styles for correct answer */
+    .correctstyle {
+      border: 2px solid green;
+      transition: border-color 0.3s ease;
+    }
+
+    /* CSS styles for incorrect answer */
+    .incorrect {
+      border: 2px solid red;
+      transition: border-color 0.3s ease;
+    }
   </style>
 </head>
 <body>
@@ -57,6 +82,7 @@ session_start();
   </nav>
 
   <div class="container">
+    <div id="form" display="initial">
     <form id="quizSettingsForm" action="quizinfo.php" method="POST">
       <label for="num-questions">Number of Questions:</label>
       <select id="num-questions" name="num-questions">
@@ -68,7 +94,23 @@ session_start();
       <select id="category" name="category">
         <option value="">Any Category</option>
         <option value="9">General Knowledge</option>
-        <!-- Add other options as needed -->
+        <option value="10">books</option>
+        <option value="11">films</option>
+        <option value="12">music</option>
+        <option value="14">television</option>
+        <option value="15">video games</option>
+        <option value="16">board games</option>
+        <option value="17">science and nature</option>
+        <option value="18">computers</option>
+        <option value="19">mathematics</option>
+        <option value="20">mythology</option>
+        <option value="21">sports</option>
+        <option value="22">geography</option>
+        <option value="23">history</option>
+        <option value="24">politics</option>
+        <option value="25">art</option>
+        <option value="28">vehicles</option>
+
       </select>
 
       <label for="difficulty">Difficulty:</label>
@@ -87,50 +129,82 @@ session_start();
 
       <button type="submit" id="startQuiz" class="btn">Start Quiz</button>
     </form>
-  </div>
-  <div id="quiz">
+    </div>
+    <div id="quiz">
+      <!-- Container for questions and options -->
+    </div>
   </div>
 
   <script>
     window.onload = function() {
       <?php
+      session_start();
       $success = $_SESSION['success'];
       if ($success) {
       ?>
         console.log('before quiz');
         function startQuiz() {
-          const num = document.getElementById('num-questions').value;
-          const category = document.getElementById('category').value;
-          const difficulty = document.getElementById('difficulty').value;
-          const time = document.getElementById('time').value;
+        const num = document.getElementById('num-questions').value;
+        const category = document.getElementById('category').value;
+        const difficulty = document.getElementById('difficulty').value;
+        const time = document.getElementById('time').value;
 
-          // Call API or perform quiz setup based on selected options
-          console.log('Starting quiz with settings:', num, category, difficulty, time);
-          const url = `https://opentdb.com/api.php?amount=${num}&category=${category}&difficulty=${difficulty}&type=multiple`;
-          fetch(url)
-            .then((res) => res.json())
-            .then((data) => {
-              questions = data.results;
-              console.log(questions);
-              var length = questions.length;
-              var i = 0;
-              setTimeout(() => {
-                while(length > 0) {
-                  const quiz = document.getElementById("quiz");
-                  const question = document.createElement('p');
-                  question.innerHTML = questions[i].question;
-                  const Wop1 = document.createElement('p');
-                  const Wop2 = document.createElement('p');
-                  const Wop3 = document.createElement('p');
-                  const Cop = document.createElement('p');
-                  quiz.innerHTML = "";
-                  quiz.appendChild(question);
-                  i++;
-                  length--;
-                }
-              }, 5000);
-          });
-        }
+        document.getElementById("form").style.display = "none"; // Hide the form
+
+      // Call API or perform quiz setup based on selected options
+      console.log('Starting quiz with settings:', num, category, difficulty, time);
+      const url = `https://opentdb.com/api.php?amount=${num}&category=${category}&difficulty=${difficulty}&type=multiple`;
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          questions = data.results;
+          console.log(questions);
+          let i = 0;
+          const delay = time * 1000; // Convert time to milliseconds
+          displayQuestion(i, delay);        
+        });
+    }
+
+    function displayQuestion(index, delay) {
+      const quiz = document.getElementById("quiz");
+      quiz.innerHTML = ""; // Clear the quiz container
+            
+      const ques = document.createElement("div");
+      const options = document.createElement("div");
+
+      const question = document.createElement('p');
+      question.classList.add('question'); // Add a class to apply CSS styles
+
+      const Wop1 = document.createElement('p');
+      const Wop2 = document.createElement('p');
+      const Wop3 = document.createElement('p');
+      const Cop = document.createElement('p');
+      Wop1.classList.add('option');
+      Wop2.classList.add('option');
+      Wop3.classList.add('option');
+      Cop.classList.add('option', 'correct'); 
+
+      question.innerHTML = questions[index].question;
+      Wop1.innerHTML = questions[index].incorrect_answers[0];
+      Wop2.innerHTML = questions[index].incorrect_answers[1];
+      Wop3.innerHTML = questions[index].incorrect_answers[2];
+      Cop.innerHTML = questions[index].correct_answer;
+
+      ques.appendChild(question);
+      options.appendChild(Wop1);
+      options.appendChild(Wop2);
+      options.appendChild(Wop3);
+      options.appendChild(Cop);
+
+      quiz.appendChild(ques);
+      quiz.appendChild(options);
+
+      if (index + 1 < questions.length) {
+        setTimeout(() => {
+          displayQuestion(index + 1, delay); // Display next question after a delay
+        }, delay); // Adjust the delay as needed
+      }
+    }
 
         startQuiz();
         <?php
@@ -138,6 +212,37 @@ session_start();
       }
       ?>
     };
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const quizContainer = document.getElementById('quiz');
+
+      // Event listener for clicks on options
+      quizContainer.addEventListener('click', function(event) {
+        if (event.target.classList.contains('option')) {
+          const selectedOption = event.target;
+          const correctOption = selectedOption.parentElement.querySelector('.correct');
+
+          // Remove previous correct and incorrect answer styles
+          const options = quizContainer.querySelectorAll('.option');
+          options.forEach(option => {
+            option.classList.remove('correct', 'incorrect');
+          });
+
+          // Highlight the selected option
+          selectedOption.classList.add('selected');
+
+          // Highlight the correct option
+          correctOption.classList.add('correct');
+
+          // Highlight incorrect options
+          if (selectedOption !== correctOption) {
+            selectedOption.classList.add('incorrect');
+          }else{
+            selectedOption.classList.add('correctstyle');
+          }
+        }
+      });
+    });
   </script>
 
 </body>
